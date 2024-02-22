@@ -1,0 +1,63 @@
+<div id="nextbutton" style="display: none; z-index: 10">
+  <h2>Next 3D Model</h2>
+</div>
+
+<a-scene
+  next-button
+  xrextras-gesture-detector
+  landing-page
+  xrextras-loading
+  xrextras-runtime-error
+  xrweb="allowedDevices: any">
+  <a-assets>
+    <a-asset-item id="firstModel" src="./assets/StockPrices.glb"></a-asset-item>
+    <a-asset-item id="secondModel" src="./assets/GameSales.glb"></a-asset-item>
+    <a-asset-item id="thirdModel" src="./assets/TeamValue.glb"></a-asset-item>
+    <a-asset-item id="fourthModel" src="./assets/EndowmentSize.glb"></a-asset-item>
+    <a-asset-item id="fifthModel" src="./assets/GDPpercapita.glb"></a-asset-item>
+  </a-assets>
+
+  <a-camera
+    id="camera"
+    position="0 8 8"
+    raycaster="objects: .cantap"
+    cursor="
+      fuse: false;
+      rayOrigin: mouse;">
+  </a-camera>
+
+  <a-entity
+    light="type: directional;
+         intensity: 0.8;
+         castShadow: true;
+         shadowMapHeight:2048;
+         shadowMapWidth:2048;
+         shadowCameraTop: 10;
+         target: #model;"
+    position="1 4.3 2.5"
+    xrextras-attach="target: model; offset: 1 15 3;"
+    shadow>
+  </a-entity>
+
+  <a-light type="ambient" intensity="1"></a-light>
+
+  <a-entity
+    id="model"
+    gltf-model="#firstModel"
+    class="cantap"
+    scale="2 2 2"
+    xrextras-hold-drag
+    xrextras-two-finger-rotate
+    xrextras-pinch-scale
+    shadow>
+  </a-entity>
+
+  <a-plane
+    id="ground"
+    position="0 0 0"
+    rotation="-90 0 0"
+    width="50"
+    height="50"
+    material="shader: shadow"
+    shadow></a-plane>
+</a-scene>
